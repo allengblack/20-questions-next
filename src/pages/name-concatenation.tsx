@@ -1,11 +1,27 @@
 import { useState, FormEvent } from "react";
 import styles from "../styles/Home.module.css";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type FormInput = {
+  firstName: string;
+  lastName: string;
+  age: number;
+};
 
 const NameConcat = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormInput>({
+    resetOptions: { keepDirtyValues: false },
+  });
+
   const [message, setMessage] = useState<string | null>();
   const [firstName, setFirstName] = useState<string>();
   const [lastName, setLastName] = useState<string>();
-  let [age, setAge] = useState<number>(0);
+  const [age, setAge] = useState<number>(0);
 
   const resetFormData = () => {
     if (firstName != "") setFirstName("");
@@ -13,43 +29,35 @@ const NameConcat = () => {
     if (age != 0) setAge(0);
   };
 
-  const handleFormSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
+    setFirstName(data.firstName);
+    setLastName(data.lastName);
+    setAge(data.age);
 
-    const form = event.target as HTMLFormElement;
-
-    setFirstName(form.firstName.value as string);
-    setLastName(form.lastName.value as string);
-    setAge(form.age.value as number);
-
-    setMessage(`Welcome, ${firstName} ${lastName}, ${age}!`);
-    resetFormData();
+    setMessage(`Welcome, ${data.firstName} ${data.lastName}, ${data.age}!`);
+    reset();
   };
 
   const handleReset = (event: FormEvent) => {
     event.preventDefault();
+    reset();
     setMessage(null);
     resetFormData();
   };
 
   return (
     <div className="p-2">
-      <form id="name-form" onSubmit={handleFormSubmit}>
+      <form id="name-form" onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formInput}>
           <label className="p-1" htmlFor="firstName">
             Enter your first name
           </label>
 
           <input
-            value={firstName || ""}
-            onChange={(e) => {
-              setFirstName(e.target.value);
-            }}
+            {...register("firstName", { required: true })}
             className="border-3 p-2"
-            type="text"
-            id="firstName"
-            required
           />
+          {errors.firstName && "First name is required"}
         </div>
 
         <div className={styles.formInput}>
@@ -58,15 +66,10 @@ const NameConcat = () => {
           </label>
 
           <input
-            value={lastName || ""}
-            onChange={(e) => {
-              setLastName(e.target.value);
-            }}
+            {...register("lastName", { required: true })}
             className="border-3 p-2"
-            type="text"
-            id="lastName"
-            required
           />
+          {errors.lastName && "Last name is required"}
         </div>
 
         <div className={styles.formInput}>
@@ -75,15 +78,11 @@ const NameConcat = () => {
           </label>
 
           <input
-            value={age}
-            onChange={(e) => {
-              setAge(e.target.value as unknown as number);
-            }}
-            className="border-3 p-2"
             type="number"
-            id="age"
-            required
+            {...register("age", { required: true, min: 18 })}
+            className="border-3 p-2"
           />
+          {errors.age && "Age is required and must be over 18"}
         </div>
 
         <button className="text-white p-2 bg-sky-500 rounded-lg" type="submit">
