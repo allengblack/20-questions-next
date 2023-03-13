@@ -20,7 +20,6 @@ export default function Lottery() {
     let isCorrect = false;
     for (const value of values) {
       isCorrect = value === "7";
-      console.log({ value, isCorrect });
 
       if (isCorrect) break;
     }
@@ -46,6 +45,10 @@ export default function Lottery() {
         <div className="text-red-600">
           {errors.values && "Please enter three numbers separated by a space"}
         </div>
+
+        <button className="text-white p-2 bg-sky-500 rounded-lg" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
