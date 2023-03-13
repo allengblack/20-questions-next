@@ -55,6 +55,12 @@ export default function Home() {
                 Name Concatenation
               </Link>
             </li>
+
+            <li>
+              <Link className="text-blue-600" href="/lottery">
+                Lottery
+              </Link>
+            </li>
           </ul>
         </div>
       </main>

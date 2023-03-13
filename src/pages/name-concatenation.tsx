@@ -59,7 +59,6 @@ const NameConcat = () => {
           />
           {errors.firstName && "First name is required"}
         </div>
-
         <div className={styles.formInput}>
           <label className="p-1" htmlFor="lastName">
             Enter your last name
@@ -71,7 +70,6 @@ const NameConcat = () => {
           />
           {errors.lastName && "Last name is required"}
         </div>
-
         <div className={styles.formInput}>
           <label className="p-1" htmlFor="age">
             Enter your age
@@ -84,11 +82,10 @@ const NameConcat = () => {
           />
           {errors.age && "Age is required and must be over 18"}
         </div>
-
+        c
         <button className="text-white p-2 bg-sky-500 rounded-lg" type="submit">
           Submit
         </button>
-
         <button
           className="text-white ml-2 p-2 bg-sky-500 rounded-lg"
           onClick={handleReset}
