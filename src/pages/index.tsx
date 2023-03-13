@@ -61,6 +61,12 @@ export default function Home() {
                 Lottery
               </Link>
             </li>
+
+            <li>
+              <Link className="text-blue-600" href="/word-reversal">
+                Word reversal
+              </Link>
+            </li>
           </ul>
         </div>
       </main>

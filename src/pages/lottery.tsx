@@ -35,7 +35,7 @@ export default function Lottery() {
     <div className="p-2">
       <h2>Enter any three number separated by spaces</h2>
 
-      <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label className="p-1" htmlFor="values">
           Enter your number
         </label>
