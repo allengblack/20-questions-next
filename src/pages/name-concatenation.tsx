@@ -82,7 +82,7 @@ const NameConcat = () => {
           />
           {errors.age && "Age is required and must be over 18"}
         </div>
-        c
+
         <button className="text-white p-2 bg-sky-500 rounded-lg" type="submit">
           Submit
         </button>

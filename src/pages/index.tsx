@@ -67,6 +67,12 @@ export default function Home() {
                 Word reversal
               </Link>
             </li>
+
+            <li>
+              <Link className="text-blue-600" href="/typed-reversal">
+                Type in Reversal
+              </Link>
+            </li>
           </ul>
         </div>
       </main>

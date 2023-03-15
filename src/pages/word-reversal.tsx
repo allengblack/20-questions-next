@@ -1,16 +1,9 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
+import reverseString from "@/utils/reverseString";
 
 interface FormInput {
   word: string;
-}
-
-function reverseString(str: string): string {
-  const splitString = str.split("");
-  const reverseArray = splitString.reverse();
-  const joinArray = reverseArray.join("");
-
-  return joinArray;
 }
 
 export default function WordReversal() {
